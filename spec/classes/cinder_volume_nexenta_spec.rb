@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'cinder::volume::nexenta' do
-
+  
   let :req_params do {
     :nexenta_login           => 'nexenta',
     :nexenta_password        => 'password',
@@ -16,16 +16,25 @@ describe 'cinder::volume::nexenta' do
     :nexenta_sparse               => 'True'
   } end
 
-  describe 'with default params' do
+  let :facts do
+    {:osfamily => 'Debian'}
+  end
 
-    let :params_hash do
+
+  context 'with only required params' do
+    before do
+      params = {}
+    end
+    let :params do
       default_params.merge(req_params)
     end
+    
+    it 'configures nexenta volume driver' do
+      params.each_pair do |config, value|
+        should contain_cinder_config("DEFAULT/#{config}").with_value(value)
+      end
+    end
 
-   it 'should lay down nexenta config' do
-     params_hash.keys do |config|
-       should contain_cinder_config("DEFAULT/#{config}").with_value(param_hash[config])
-     end
-   end
   end
+
 end
