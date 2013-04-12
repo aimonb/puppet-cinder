@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'cinder::volume::nexenta' do
   
   let :req_params do {
-    :nexenta_login           => 'nexenta',
+    :nexenta_user            => 'nexenta',
     :nexenta_password        => 'password',
     :nexenta_host            => '127.0.0.2',
   } end

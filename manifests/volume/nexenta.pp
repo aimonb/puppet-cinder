@@ -1,6 +1,6 @@
 #
 class cinder::volume::nexenta (
-  $nexenta_login,
+  $nexenta_user,
   $nexenta_password,
   $nexenta_host,
   $nexenta_volume               = 'cinder',
@@ -13,7 +13,7 @@ class cinder::volume::nexenta (
   include cinder::params
 
   cinder_config {
-    'DEFAULT/nexenta_login':                value => $nexenta_login;
+    'DEFAULT/nexenta_user':                 value => $nexenta_user;
     'DEFAULT/nexenta_password':             value => $nexenta_password;
     'DEFAULT/nexenta_host':                 value => $nexenta_host;
     'DEFAULT/nexenta_volume':               value => $nexenta_volume;
